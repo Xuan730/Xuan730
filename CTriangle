@@ -1,0 +1,53 @@
+using System;
+
+class CShape
+{
+    protected string color;
+
+    public CShape(string color)
+    {
+        this.color = color;
+    }
+
+    public void Draw()
+    {
+        Console.WriteLine($"繪製一個{color}的形狀。");
+    }
+}
+
+class CTriangle : CShape
+{
+    private double a, b, c;
+
+    public CTriangle(string color, double a, double b, double c)
+        : base(color)
+    {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+    public double Area()
+    {
+        double s = (a + b + c) / 2.0;
+        return Math.Sqrt(s * (s - a) * (s - b) * (s - c));
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        double a = 3;
+        double b = 4;
+        double c = 5;
+        string color = "紅色";
+
+        CTriangle triangle = new CTriangle(color, a, b, c);
+
+        Console.WriteLine($"三角形的顏色：{triangle.color}");
+        Console.WriteLine($"三角形的面積：{triangle.Area()}");
+
+        triangle.Draw();
+    }
+}
